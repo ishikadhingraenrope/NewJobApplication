@@ -4,6 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './MainComponent/Dashboard';
 import Login from './MainComponent/Login';
+import Signup from './MainComponent/SingUp';
+import ForgotPassword from './MainComponent/ForgotPassword';
 
 function App() {
   const notify = () => toast("Wow! Toast is working 🚀");
@@ -25,9 +27,11 @@ function App() {
         />
 
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Signup />} />
+             <Route path="/ForgotPassword" element={< ForgotPassword/>} />
         </Routes>
       </BrowserRouter>
     </>
