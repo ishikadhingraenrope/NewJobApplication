@@ -5,7 +5,7 @@ const JobApplications = () => {
     {
       id: 1,
       jobTitle: "Business Analyst",
-      domain: "Enrope",
+      domain: "Enrope Solutions",
       name: "Chetan",
       contact: "9591602192",
       email: "cmwali959@gmail.com",
@@ -18,7 +18,7 @@ const JobApplications = () => {
     {
       id: 2,
       jobTitle: "Business Analyst",
-      domain: "Enrope",
+      domain: "Enrope Solutions",
       name: "Vinodhi",
       contact: "9597318951",
       email: "vinov335@gmail.com",
@@ -31,7 +31,7 @@ const JobApplications = () => {
     {
       id: 3,
       jobTitle: "NodeJS Developer",
-      domain: "IT",
+      domain: "Enrope Solutions",
       name: "Piyush Suryavanshi",
       contact: "9834274896",
       email: "piyush.surya@example.com",
@@ -44,7 +44,7 @@ const JobApplications = () => {
     {
       id: 4,
       jobTitle: "Frontend Developer",
-      domain: "IT",
+      domain: "Enrope Solutions",
       name: "Soumika Mallick",
       contact: "8319761065",
       email: "soumika.mallick@example.com",
@@ -57,7 +57,7 @@ const JobApplications = () => {
     {
       id: 5,
       jobTitle: "React Developer",
-      domain: "Web Development",
+      domain: "Enrope Solutions",
       name: "Srijan Karak",
       contact: "8509534214",
       email: "srijan.k@example.com",
@@ -71,10 +71,10 @@ const JobApplications = () => {
     {
       id: 6,
       jobTitle: "Payton",
-      domain: "Backend Develeoper",
+      domain: "Enrope Solutions",
       name: "Rimjim",
       contact: "8509534214",
-      email: "Rimjim.k@example.com",
+      email: "rimjim.k@example.com",
       workExp: 15,
       location: "noida",
       source: "LinkedIn",
