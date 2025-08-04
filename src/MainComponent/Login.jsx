@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase"; // path to firebase.js
+import { auth } from "../config/firestore"; // path to firebase.js
 
 
 const Login = () => {

@@ -7,7 +7,7 @@ import Login from './MainComponent/Login';
 import Signup from './MainComponent/SingUp';
 import ForgotPassword from './MainComponent/ForgotPassword';
 
-function App() {
+;function App() {
   const notify = () => toast("Wow! Toast is working 🚀");
 
   return (

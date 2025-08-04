@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase"; // make sure this path is correct
+import { auth } from "../config/firestore"; // make sure this path is correct
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -22,6 +22,7 @@ const Signup = () => {
     EmailAddress: "",
     DateOfBirth: "",
     Password: "",
+   DateOfBirth: "",
     About: "",
   });
 
@@ -118,6 +119,18 @@ const Signup = () => {
                             <input type="date" id="DateOfBirth" name="DateOfBirth" value={formValues.DateOfBirth} onChange={handleChange} className="border border-gray-400 p-2 rounded w-full" />
                             {formErrors.DateOfBirth && <p className="text-red-500">{formErrors.DateOfBirth}</p>}
                         </div>
+                                  <div>
+  <label htmlFor="About" className="text-sm font-medium text-gray-700">About</label>
+  <textarea
+    id="About"
+    name="About"
+    placeholder="Tell us about yourself"
+    value={formValues.About}
+    onChange={handleChange}
+    className="border border-gray-400 p-2 rounded w-full"
+  />
+  {formErrors.About && <p className="text-red-500">{formErrors.About}</p>}
+</div>
                         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-gray-800 mt-4 mx-4 mb-4">SignUp</button>
                     </form>
                 </div>

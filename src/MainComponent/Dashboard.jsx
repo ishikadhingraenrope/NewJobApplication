@@ -3,18 +3,12 @@ import Sidebar from "./Sidebar";
 import Logout from "./LogOut";
 import Login from "./Login";
 
-
 // icons
 import {
-  MdHome,
-  MdPerson,
-  MdSettings,
-  MdEdit,
-  MdInfo,
   MdLogout,
-  MdPeople,
   MdWork,
 } from "react-icons/md";
+
 import NewJobApplication from "../JobApplication/NewJobApplication";
 import AcceptApplication from "../JobApplication/AcceptApplication";
 import RejectApplication from "../JobApplication/RejectApplication";
@@ -22,21 +16,18 @@ import Interviewed from "../JobApplication/Interviewed";
 import Shortlisted from "../JobApplication/Shortlist";
 
 const Dashboard = () => {
-  // const tabs = ['Home', 'Profile', 'Settings', "EditProfile","UserDetails",Employee Information Management"","Logout"];
   const [activeTab, setActiveTab] = useState("Home");
   const [opensidebar, setopensidebar] = useState(false);
-  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
-      setopensidebar(false); //  Automatically collapse sidebar on mobile
+      setopensidebar(false);
     } else {
-      setopensidebar(true); // Open it on desktop
+      setopensidebar(true);
     }
   }, []);
 
   const tabs = [
-    // Parent with submodules
     {
       label: "New Job Application",
       icon: <MdWork size={25} />,
@@ -44,7 +35,7 @@ const Dashboard = () => {
         { label: "Accepted Application" },
         { label: "Interviewed Application" },
         { label: "Shortlisted Application" },
-          { label: "Rejected Application" },
+        { label: "Rejected Application" },
       ],
     },
     { label: "Logout", icon: <MdLogout size={25} /> },
@@ -75,22 +66,19 @@ const Dashboard = () => {
         tabs={tabs}
         activeTab={activeTab}
         onTabClick={(tab) => {
-          setActiveTab(tab); // change the active tab
+          setActiveTab(tab);
           if (window.innerWidth < 768) {
-            setopensidebar(false); // hide sidebar on mobile
+            setopensidebar(false);
           }
         }}
         opensidebar={opensidebar}
         setopensidebar={setopensidebar}
       />
       <div className="flex-1 flex flex-col max-h-screen overflow-hidden">
-        {/* <Header opensidebar={opensidebar} /> */}
         <main
           className={`flex-1 p-8 overflow-y-auto max-h-screen transition-all duration-300
-   'md:ml-60 ml-0 pr-4' : 'md:ml-16 ml-1 pr-4'
-   ${opensidebar ? "ml-0" : "ml-10 md:ml-0"}  `}
+          ${opensidebar ? "ml-0" : "ml-10 md:ml-0"}`}
         >
-          {/* mobile ml-8, desktop md:ml-1 */}
           <div className="bg-white shadow p-6 rounded min-h-full">
             {renderContent()}
           </div>
