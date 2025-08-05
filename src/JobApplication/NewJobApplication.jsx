@@ -145,6 +145,7 @@ const JobApplications = ({ status }) => {
               <th className="p-2 border border-gray-300 font-semibold">Name</th>
               <th className="p-2 border border-gray-300 font-semibold">Job Title</th>
               <th className="p-2 border border-gray-300 font-semibold">Work Exp</th>
+              <th className="p-2 border border-gray-300 font-semibold">Email</th>
               <th className="p-2 border border-gray-300 font-semibold">Location</th>
               <th className="p-2 border border-gray-300 font-semibold">Source</th>
               <th className="p-2 border border-gray-300 font-semibold">Applied Date</th>
@@ -160,6 +161,8 @@ const JobApplications = ({ status }) => {
                 <td className="p-2 border border-gray-300">{app.name}</td>
                 <td className="p-2 border border-gray-300">{app.jobTitle}</td>
                 <td className="p-2 border border-gray-300">{app.workExp}</td>
+                <td className="p-2 border border-gray-300">{app.email}</td>
+
                 <td className="p-2 border border-gray-300">{app.location}</td>
                 <td className="p-2 border border-gray-300">{app.source}</td>
                 <td className="p-2 border border-gray-300">{app.appliedDate}</td>
