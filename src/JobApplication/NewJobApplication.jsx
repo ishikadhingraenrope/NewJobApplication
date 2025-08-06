@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { fetchApplicationsByStatus } from "../config/firebaseUtils";
+import { fetchApplicationsByStatus, updateApplicationStatus } from "../config/firebaseUtils";
 
 const JobApplications = ({ status }) => {
   const [applications, setApplications] = useState([]);
   const [filteredApplications, setFilteredApplications] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [workExpFilter, setWorkExpFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [sourceFilter, setSourceFilter] = useState("");
   const [selectedDateRange, setSelectedDateRange] = useState("");
 
+  // Move fetchData outside useEffect so it can be called elsewhere
+  const fetchData = async () => {
+    const data = await fetchApplicationsByStatus("pending");
+    setApplications(data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchApplicationsByStatus("status");
-      setApplications(data);
-    };
     fetchData();
   }, [status]);
 
@@ -36,14 +39,23 @@ const JobApplications = ({ status }) => {
     setFilteredApplications(filtered);
   }, [workExpFilter, locationFilter, sourceFilter, selectedDateRange, applications]);
 
-  const handleAccept = (applicationId) => {
-    // Implement Firebase update logic here to set status to 'Accepted'
+  const handleAccept = async (applicationId) => {
+    // Update status in Firestore to 'accepted'
+    await updateApplicationStatus(applicationId, "accepted");
+    // Re-fetch pending applications
+    fetchData();
+    setSuccessMessage("Application accepted!");
+    setTimeout(() => setSuccessMessage(""), 2000);
   };
-
-  const handleReject = (applicationId) => {
-    // Implement Firebase update logic here to set status to 'Rejected'
+  
+  const handleReject = async (applicationId) => {
+    // Update status in Firestore to 'rejected'
+    await updateApplicationStatus(applicationId, "rejected");
+    // Re-fetch pending applications
+    fetchData();
+    setSuccessMessage("Application rejected!");
+    setTimeout(() => setSuccessMessage(""), 2000);
   };
-
   const filterByDateRange = (data) => {
     const now = new Date();
     return data.filter((item) => {
@@ -80,6 +92,11 @@ const JobApplications = ({ status }) => {
 
   return (
     <div className="p-4">
+      {successMessage && (
+        <div className="mb-4 p-2 bg-green-100 text-green-800 rounded">
+          {successMessage}
+        </div>
+      )}
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-semibold">Job Applications</h2>
         <div className="flex gap-3 flex-wrap">
@@ -144,6 +161,8 @@ const JobApplications = ({ status }) => {
               </th>
               <th className="p-2 border border-gray-300 font-semibold">Name</th>
               <th className="p-2 border border-gray-300 font-semibold">Job Title</th>
+              <th className="p-2 border border-gray-300 font-semibold">Domain</th>
+              <th className="p-2 border border-gray-300 font-semibold">Contact</th>
               <th className="p-2 border border-gray-300 font-semibold">Work Exp</th>
               <th className="p-2 border border-gray-300 font-semibold">Email</th>
               <th className="p-2 border border-gray-300 font-semibold">Location</th>
@@ -160,6 +179,9 @@ const JobApplications = ({ status }) => {
                 </td>
                 <td className="p-2 border border-gray-300">{app.name}</td>
                 <td className="p-2 border border-gray-300">{app.jobTitle}</td>
+                <td className="p-2 border border-gray-300">{app.domain}</td>
+                <td className="p-2 border border-gray-300">{app.contact}</td>
+
                 <td className="p-2 border border-gray-300">{app.workExp}</td>
                 <td className="p-2 border border-gray-300">{app.email}</td>
 

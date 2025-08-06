@@ -6,7 +6,7 @@ const AcceptApplication = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await fetchApplicationsByStatus("Accepted");
+      const result = await fetchApplicationsByStatus("accepted");
       setData(result);
     };
     fetchData();
@@ -31,11 +31,12 @@ const AcceptApplication = () => {
           {data.map((app) => (
             <tr key={app.id} className="text-center">
               <td className="border px-4 py-2">{app.name}</td>
-              <td className="border px-4 py-2">{app.title}</td>
-              <td className="border px-4 py-2">{app.exp}</td>
+              <td className="border px-4 py-2">{app.jobTitle}</td>
+              <td className="border px-4 py-2">{app.workExp}</td>
               <td className="border px-4 py-2">{app.location}</td>
               <td className="border px-4 py-2">{app.source}</td>
               <td className="border px-4 py-2">{app.appliedDate}</td>
+              <td className="border px-4 py-2">{app.email}</td>
               <td className="border px-4 py-2">
                 {/* Optional: Add View/Download/Reject buttons here */}
                 <button className="bg-blue-500 text-white px-2 py-1 rounded mr-1">View</button>

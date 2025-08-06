@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { fetchApplicationsByStatus } from "../config/firebaseUtils";
 
  const RejectApplication = ()=>{
      const [rejectedData, setRejectedData] = useState([]);
@@ -16,9 +17,12 @@ import React, { useEffect, useState } from "react"
 
    
          useEffect(() => {
-        const data = JSON.parse(localStorage.getItem("rejectedApplications")) || [];
-        setRejectedData(data);
-        setFilteredData(data); // add this line
+        const fetchRejectedData = async () => {
+          const data = await fetchApplicationsByStatus("rejected");
+          setRejectedData(data);
+          setFilteredData(data);
+        };
+        fetchRejectedData();
          }, []);
 
      useEffect(() => {
@@ -121,7 +125,6 @@ import React, { useEffect, useState } from "react"
         <table className="min-w-full border text-sm">
           <thead className="bg-gray-100  text-gray-700 text-left">
             <tr>
-            <th className="p-2 border  border-gray-300 font-semibold ">ID</th>
               <th className="p-2 border  border-gray-300 font-semibold ">Job Title</th>
               <th className="p-2 border  border-gray-300 font-semibold ">Domin</th>
               <th className="p-2 border  border-gray-300 font-semibold ">Name</th>
@@ -143,7 +146,6 @@ import React, { useEffect, useState } from "react"
           <tbody className="text-left">
          {filteredData.map((app) => (
               <tr key={app.id}>
-                <td className="p-2 border  border-gray-300 ">{app.id}</td>
                  <td className="p-2 border border-gray-300">{app.jobTitle}</td>
                  <td className="p-2 border border-gray-300">{app.domain}</td>
                 <td className="p-2 border border-gray-300">{app.name}</td>
@@ -153,9 +155,7 @@ import React, { useEffect, useState } from "react"
                 <td className="p-2 border border-gray-300">{app.location}</td>
                 <td className="p-2 border border-gray-300">{app.source}</td>
                 <td className="p-2 border border-gray-300">{app.appliedDate}</td>
-                   <td className="p-2 border border-gray-300">
-  {app.rejectedDate ? new Date(app.rejectedDate).toLocaleDateString() : "Not Avilable"}
-</td>
+             
                  <td className="p-2 border  border-gray-300 text-center space-x-2">
                   <button title="View Resume">👁️</button>
                   <button title="Download Resume">⬇️</button>
